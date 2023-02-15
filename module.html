@@ -1,0 +1,151 @@
+<div class="privacy-page-outer">
+  <div class="page-center">
+    <div class="index_n_content">
+      <div class="index">
+
+        <div class="index_text">
+          <ul class="selectdropdown">
+            {% for item in module.index_group %}
+            <li> <a href="#goto-section-{{ loop.index }}">{{ item.index_text }}</a></li>
+            {% endfor %}
+            <span></span>
+          </ul>
+        </div>
+
+      </div>
+      <div class="content">
+        <div class="priv_img_head_flex">
+          <div class="privacy_image">
+            {% if module.heading_image.src %}
+            {% set sizeAttrs = 'width="{{ module.heading_image.width }}" height="{{ module.heading_image.height }}"' %}
+            {% if module.heading_image.size_type == 'auto' %}
+            {% set sizeAttrs = 'width="{{ module.heading_image.width }}" height="{{ module.heading_image.height }}" style="max-width: 100%; height: auto;"' %}
+            {% elif module.heading_image.size_type == 'auto_custom_max' %}
+            {% set sizeAttrs = 'width="{{ module.heading_image.max_width }}" height="{{ module.heading_image.max_height }}" style="max-width: 100%; height: auto;"' %}
+            {% endif %}
+            {% set loadingAttr = module.heading_image.loading != 'disabled' ? 'loading="{{ module.heading_image.loading }}"' : '' %}
+            <img src="{{ module.heading_image.src }}" alt="{{ module.heading_image.alt }}" {{ loadingAttr }} {{ sizeAttrs }}>
+            {% endif %}
+          </div>
+          <div class="privacy_heading">
+            <h1>{{ module.privacy_heading }}</h1>
+          </div>
+        </div>
+        <div class="priv_pub_date">
+          <p>{{ module.policy_effective_date }}</p>
+        </div>
+        {% for item in module.content_head_details_group %}
+        <div id="goto-section-{{ loop.index }}">
+        <div class="content_head">
+          <h2>{{ item.content_heading }}</h2>
+        </div>
+        <div class="content_det">
+          <p>{{ item.content_details }}</p>
+          <div>
+          </div>
+        </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>  
+<style>
+  .privacy-page-outer{
+    padding-top:{{ module.style.top_space }}px;
+    padding-bottom:{{ module.style.bottom_space }}px;
+
+    {% if module.style.background_style == "priv_bg_col" %} 
+    background-color:rgba({{module.style.background_color.color|convert_rgb }},{{module.style.background_color.opacity / 100 }});
+    {% elif module.style.background_style == "priv_bg_grad" %}
+    background-image:{{ module.style.background_gradient.css }};
+    {% else module.style.background_style == "priv_bg_img" %}
+    background:url("{{ module.style.background_image.src }}");
+      {% endif %}
+      }
+  .privacy_heading h1{
+    font-size:{{ module.style.privacy_heading_font_setting.font_size }}px!important;
+    color:rgba({{ module.style.privacy_heading_font_setting.font_color.color|convert_rgb }},{{module.style.privacy_heading_font_setting.font_color.opacity / 100 }});
+    line-height:{{ module.style.privacy_heading_font_setting.font_line_height }}px!important;
+    font-weight:{{ module.style.privacy_heading_font_setting.font_weight }}!important;
+  }
+  .priv_pub_date p{
+    font-size:{{ module.style.privacy_date_font_setting.font_size }}px!important;
+    color:rgba({{  module.style.privacy_date_font_setting.font_color.color|convert_rgb }},{{module.style.privacy_date_font_setting.font_color.opacity / 100 }});
+    line-height:{{ module.style.privacy_date_font_setting.font_line_height }}px!important;
+    font-weight:{{ module.style.privacy_date_font_setting.font_weight }}!important;
+  }
+  .content_head h2{
+    font-size:{{ module.style.content_heading_font_setting.font_size }}px!important;
+    color:rgba({{ module.style.content_heading_font_setting.font_color.color|convert_rgb }},{{module.style.content_heading_font_setting.font_color.opacity / 100 }});
+    line-height:{{ module.style.content_heading_font_setting.font_line_height }}px!important;
+    font-weight:{{ module.style.content_heading_font_setting.font_weight }}!important;
+  }
+  .content_det p{
+    font-size:{{ module.style.content_description_font_setting.font_size }}px!important;
+    color:rgba({{ module.style.content_description_font_setting.font_color.color|convert_rgb }},{{module.style.content_description_font_setting.font_color.opacity / 100 }});
+    line-height:{{ module.style.content_description_font_setting.font_line_height }}px!important;
+    font-weight:{{ module.style.content_description_font_setting.font_weight }}!important;
+  }
+  .index_text li a{
+    font-size:{{ module.style.index_font_setting.font_size }}px!important;
+    color:rgba({{ module.style.index_font_setting.font_color.color|convert_rgb }},{{module.style.index_font_setting.font_color.opacity / 100 }});
+    line-height:{{ module.style.index_font_setting.font_line_height }}px!important;
+    font-weight:{{ module.style.index_font_setting.font_weight }}!important;
+  }
+</style>
+<script>
+//   $( document ).ready(function() {
+//     if ( $(window).width() <= 760) { 
+//       $(".index_text ul").addClass("select");
+//       $(".select").click(function() {
+//         var is_open = $(this).hasClass("open");
+//         if (is_open) {
+//           $(this).removeClass("open");
+//         } else {
+//           $(this).addClass("open");
+//         }
+//       });
+
+//       $(".select li").click(function() {
+//         var selected_value = $(this).html();
+//         var first_li = $(".select li:first-child").html();
+//         $(".select li:first-child").html(selected_value);
+//         $(this).html(first_li);
+//       });
+
+//       $(document).mouseup(function(event) {
+//         var target = event.target;
+//         var select = $(".select");
+
+//         if (!select.is(target) && select.has(target).length === 0) {
+//           select.removeClass("open");
+//         }
+//       });
+//     }
+//   });
+//   
+//   -------------------------------------------------------------------------------------------------
+ $( document ).ready(function() {
+    if ( $(window).width() <= 760) { 
+            $('ul.selectdropdown').each(function(){
+        var list=$(this),
+            select=$(document.createElement('select')).insertBefore($(this).hide()).change(function(){
+            window.open($(this).val(),'_self')
+            });
+        $('>li a', this).each(function(){
+          var option=$(document.createElement('option'))
+          .appendTo(select)
+          .val(this.href)
+          .html($(this).html());
+          if($(this).attr('class') === 'selected'){
+            option.attr('selected','selected');
+          }
+        });
+        list.remove();
+       
+      });
+      
+          }
+    });
+</script>
