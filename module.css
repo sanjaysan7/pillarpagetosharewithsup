@@ -1,0 +1,106 @@
+html {
+  scroll-behavior: smooth;
+}
+.index_text li a{
+
+  text-decoration:none;
+}
+.privacy-page-outer{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+.index_n_content{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.index_n_content .index {
+
+  flex: 0 20%;
+}
+.index_text ul{
+  border-left:1px solid #000C07;
+}
+.index_text li{
+  padding-left:20px;
+}
+.index_text{
+  position: -webkit-sticky;
+  position:sticky;
+  top:10px;
+}
+
+.index_n_content .content {
+  flex: 0 80%;
+}
+
+.priv_img_head_flex{
+  display:flex;
+  /*   flex-wrap:wrap; */
+  gap:20px;
+}
+.index_text li{
+  padding-bottom:5px;
+  list-style: none;
+}
+
+@media(max-width:760px){
+  .index_text li{
+    padding-left:0px;
+  }
+  .index_n_content{
+    flex-direction:column;
+  }
+  .index_n_content .index {
+    flex: 0 100%;
+  } 
+  .index_n_content .content {
+    flex: 0 100%;
+  }
+  .privacy-page-outer {
+    padding-top: 264px!important;
+  }
+  .priv_img_head_flex .privacy_image {
+    order: 2;
+  }
+  .priv_img_head_flex .privacy_heading {
+    order: 1;
+  }
+  .index_text select {
+   
+    width: 100%;
+    background-color:#EAFCF6;
+    display: inline-block;
+    padding: 5px;
+    -webkit-appearance: none;
+    border: none;
+    border-bottom: 2px solid #0B5CFF;
+
+  }
+  .index::after{
+    right: 4px;
+    top: 8px;
+    background: url(https://4854096.fs1.hubspotusercontent-na1.net/hubfs/4854096/Boclips%202023%20assets/down-1.svg);
+    content: "";
+    height: 9px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    width: 16px;
+  }
+  .index_text {
+    
+    padding-bottom: 50px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+  }
+  .index{
+    position:relative;
+  }
+}
